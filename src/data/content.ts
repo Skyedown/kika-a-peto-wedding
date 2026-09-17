@@ -22,7 +22,7 @@ export interface ScheduleEntry {
 export interface Hotel {
   name: string;
   meta: string;
-  bookingUrl: string;
+  mapUrl: string;
 }
 
 export interface FaqEntry {
@@ -110,7 +110,7 @@ export const hotels: Hotel[] = [
   {
     name: 'Centrum poznávania - Oščadnica',
     meta: '300m · priamo pri mieste konania · 15 €/noc',
-    bookingUrl: 'https://maps.app.goo.gl/xxiQkYJMk2AaEC5g6',
+    mapUrl: 'https://maps.app.goo.gl/xxiQkYJMk2AaEC5g6',
   },
 ];
 

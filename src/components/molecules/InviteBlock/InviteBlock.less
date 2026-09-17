@@ -23,7 +23,7 @@
     align-items: center;
     gap: 0.45rem;
     width: 100%;
-    padding: 1.15rem 0.9rem 1.1rem;
+    padding: 1.3rem 1.55rem 1.25rem;
 
     .respond-to(@bp-md, {
       width: min(92%, 40rem);
@@ -82,13 +82,13 @@
     // oslovenim - to je pri dvoch menach siroke az po okraje panelu, takze sa
     // nesmie spoliehat na to, ze ju minie zlava.
     @media (max-width: @bp-sm) {
-      width: 3.4rem;
-      top: -2.9rem;
-      left: 0.3rem;
+      width: 4.6rem;
+      top: -2.3rem;
+      left: -0.3rem;
 
       .invite__photo-caption {
-        font-size: 0.42rem;
-        padding-top: 0.16rem;
+        font-size: 0.5rem;
+        padding-top: 0.18rem;
       }
     }
 
@@ -108,7 +108,7 @@
   }
 
   &__eyebrow {
-    font-size: 0.72rem;
+    font-size: 0.65rem;
     letter-spacing: 0.4em;
     text-transform: uppercase;
     color: @color-gold;
@@ -117,7 +117,7 @@
   &__greet {
     font-family: @font-display;
     font-weight: @font-weight-light;
-    font-size: clamp(1.6rem, 6vw, 3rem);
+    font-size: clamp(1.35rem, 5.2vw, 3rem);
     line-height: 1.1;
 
     // Polaroid zasahuje do praveho horneho rohu panelu, takze dlhe oslovenie sa
@@ -145,8 +145,8 @@
     // Cormorant ma nizsi x-height, tak potrebuje vacsi stupen aj prokladanie.
     font-family: @font-display;
     font-weight: @font-weight-light;
-    font-size: 0.95rem;
-    line-height: 1.72;
+    font-size: 0.86rem;
+    line-height: 1.58;
 
     .respond-to(@bp-md, {
       // Miera je zhora obmedzena polaroidom, ktory zasahuje do prava horneho
@@ -222,14 +222,15 @@
     }
   }
 
+  // Tecie hned za panelom, nie pripnuty na spodok obrazovky: pripnuty sa dostaval
+  // pod panel (ten ma z-index @z-overlay) a na vyssich pozvankach ho prekryl.
   &__scroll-hint {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: max(4.5rem, calc(env(safe-area-inset-bottom) + 3.5rem));
+    position: static;
+    z-index: @z-overlay;
+    margin-top: 1.25rem;
 
     .respond-to(@bp-md, {
-      bottom: max(1rem, env(safe-area-inset-bottom));
+      margin-top: 1.6rem;
     });
     width: max-content;
     margin-inline: auto;

@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { events, VENUE, VENUE_MAP_URL } from '@data/content';
 import { detailsInstax } from '@data/photos';
 import { InstaxPhoto } from '@atoms/InstaxPhoto/InstaxPhoto';
-import { Button } from '@atoms/Button/Button';
+import { MapButton } from '@atoms/MapButton/MapButton';
 import { Icon } from '@atoms/Icon/Icon';
 import { SectionHeading } from '@atoms/SectionHeading/SectionHeading';
 import { EventCard } from '@molecules/EventCard/EventCard';
@@ -27,10 +27,7 @@ export const WeddingDetails = memo(() => (
         ))}
       </div>
       <div className="details__map reveal">
-        <Button href={VENUE_MAP_URL} variant="solid" external>
-          <Icon name="pin" className="details__map-pin" />
-          Zobraziť na mape
-        </Button>
+        <MapButton href={VENUE_MAP_URL} />
         <span className="details__map-venue">{VENUE}</span>
       </div>
       <p className="details__dress reveal">
