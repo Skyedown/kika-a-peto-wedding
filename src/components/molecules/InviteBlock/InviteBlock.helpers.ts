@@ -7,10 +7,10 @@ export interface InviteCopy {
 }
 
 const PLURAL_TEXT =
-  'S radosťou Vás pozývame na náš svadobný deň s hostinou, ktoré sa budú konať 4.6.2027 vo svadobnom stane v Oščadnici. Vaša prítomnosť by nám urobila obrovskú radosť. Zároveň Vás prosíme o potvrdenie účasti pomocou tlačidla nižšie, aby sme mohli všetko dokonale naplánovat. Ďalšie informace o svadbe nájdete na tejto webovej stránke nižšie.';
+  'S radosťou Vás pozývame na náš svadobný deň s hostinou, ktoré sa budú konať 4.6.2027 vo Svadobnom stane v Oščadnici. Vaša prítomnosť by nám urobila obrovskú radosť. Zároveň Vás prosíme o potvrdenie účasti pomocou tlačidla nižšie, aby sme mohli všetko dokonale naplánovať. Ďalšie informácie o svadbe nájdete na tejto webovej stránke nižšie.';
 
 const SINGULAR_TEXT =
-  'S radosťou Ťa pozývame na náš svadobný deň s hostinou, ktoré sa budú konať 4.6.2027 vo svadobnom stane v Oščadnici. Tvoja prítomnosť by nám urobila obrovskú radosť. Zároveň ťa prosíme o potvrdenie účasti pomocou tlačidla nižšie, aby sme mohli všetko dokonale naplánovat. Ďalšie informace o svadbe nájdeš na tejto webovej stránke nižšie.';
+  'S radosťou Ťa pozývame na náš svadobný deň s hostinou, ktoré sa budú konať 4.6.2027 vo Svadobnom stane v Oščadnici. Tvoja prítomnosť by nám urobila obrovskú radosť. Zároveň ťa prosíme o potvrdenie účasti pomocou tlačidla nižšie, aby sme mohli všetko dokonale naplánovať. Ďalšie informácie o svadbe nájdeš na tejto webovej stránke nižšie.';
 
 const SINGULAR_FORMS: Record<Gender | 'unknown', Pick<InviteCopy, 'eyebrow' | 'salutation'>> = {
   m: { eyebrow: 'Si srdečne pozvaný', salutation: 'Milý' },

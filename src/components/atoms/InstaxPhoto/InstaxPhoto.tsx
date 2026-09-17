@@ -1,17 +1,14 @@
 import { memo } from 'react';
 import './InstaxPhoto.less';
 
-export type InstaxTape = 'top' | 'corner' | 'none';
-
 export interface InstaxPhotoProps {
   src: string;
   caption?: string | undefined;
-  tape?: InstaxTape;
   className?: string;
 }
 
-export const InstaxPhoto = memo(({ src, caption, tape = 'top', className = '' }: InstaxPhotoProps) => (
-  <figure className={`instax instax--tape-${tape} ${className}`}>
+export const InstaxPhoto = memo(({ src, caption, className = '' }: InstaxPhotoProps) => (
+  <figure className={`instax ${className}`}>
     <span className="instax__window">
       <img className="instax__img" src={src} alt="" loading="lazy" decoding="async" />
     </span>

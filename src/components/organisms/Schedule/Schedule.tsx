@@ -18,7 +18,6 @@ export const Schedule = ({ rsvpUrl }: ScheduleProps) => (
           key={shot.src}
           src={shot.src}
           caption={shot.caption}
-          tape={index === 0 ? 'top' : 'corner'}
           className={`schedule__instax schedule__instax--${index === 0 ? 'first' : 'second'}`}
         />
       ))}

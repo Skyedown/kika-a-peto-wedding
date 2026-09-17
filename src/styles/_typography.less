@@ -9,6 +9,18 @@ html {
   scroll-behavior: auto;
 }
 
+// Dekoracie (instax fotky, vetvicky, satenove vrstvy) zamerne presahuju panel,
+// takze dokument je o par pixelov sirsi nez okno a stranka sa dala tahat do
+// bokov. Samotny overflow-x na <body> nestaci: propaguje sa na viewport, ale
+// na iOS Safari tahanie prstom aj tak prejde. Preto to klipujeme aj na <html>.
+// `clip` namiesto `hidden` zamerne - nevytvara scroll kontajner, takze
+// position: sticky aj Lenis funguju dalej. `hidden` je fallback pre stare Safari.
+html,
+body {
+  overflow-x: hidden;
+  overflow-x: clip;
+}
+
 body {
   background: @color-bg;
   color: @color-text;
@@ -16,7 +28,6 @@ body {
   font-weight: @font-weight-light;
   line-height: @line-height-body;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 
 // ── Shared type scale (used across multiple sections) ──

@@ -1,7 +1,7 @@
 @import (reference) '../../../styles/_variables.less';
 @import (reference) '../../../styles/_mixins.less';
 
-// Instax mini: narrow white frame, deep bottom margin, washi-tape strip.
+// Instax mini: uzky biely ramcek s hlbokym spodnym okrajom.
 .instax {
   position: relative;
   display: flex;
@@ -41,55 +41,5 @@
     line-height: 1.1;
     color: @color-text;
     text-align: center;
-  }
-
-  &--tape-top::before,
-  &--tape-corner::before {
-    content: '';
-    position: absolute;
-    z-index: 1;
-    width: 48%;
-    height: 1.1rem;
-    background:
-      repeating-linear-gradient(90deg, fade(@color-white, 25%) 0 0.35rem, transparent 0.35rem 0.7rem),
-      fade(@color-olive-light, 78%);
-    clip-path: polygon(
-      0 12%,
-      6% 0,
-      12% 14%,
-      20% 2%,
-      30% 12%,
-      42% 0,
-      55% 10%,
-      68% 0,
-      80% 12%,
-      90% 2%,
-      100% 10%,
-      97% 50%,
-      100% 88%,
-      92% 100%,
-      82% 88%,
-      70% 100%,
-      58% 90%,
-      45% 100%,
-      32% 88%,
-      20% 100%,
-      9% 90%,
-      0 100%,
-      3% 50%
-    );
-    box-shadow: 0 0.05rem 0.2rem fade(@color-text, 12%);
-  }
-
-  &--tape-top::before {
-    top: -0.55rem;
-    left: 26%;
-    transform: rotate(-4deg);
-  }
-
-  &--tape-corner::before {
-    top: 0.2rem;
-    right: -1.3rem;
-    transform: rotate(42deg);
   }
 }

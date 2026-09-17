@@ -12,7 +12,6 @@ export const GiftRegistry = memo(() => (
           key={shot.src}
           src={shot.src}
           caption={shot.caption}
-          tape={index === 0 ? 'top' : 'corner'}
           className={`gift__instax gift__instax--${index === 0 ? 'first' : 'second'}`}
         />
       ))}

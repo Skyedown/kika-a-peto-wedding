@@ -14,7 +14,6 @@ export const FAQ = memo(() => (
           key={shot.src}
           src={shot.src}
           caption={shot.caption}
-          tape={index === 1 ? 'corner' : 'top'}
           className={`faq__instax faq__instax--${index + 1}`}
         />
       ))}
