@@ -1,0 +1,90 @@
+@import (reference) '../../../styles/_variables.less';
+@import (reference) '../../../styles/_mixins.less';
+
+// Satin texture (generated still) brought to life with transform/opacity-only
+// motion: a slow drift, a mirrored copy breathing over it, and a travelling sheen.
+@silk-landscape: url('/silk/silk-landscape.webp');
+@silk-portrait: url('/silk/silk-portrait.webp');
+
+.silk {
+  position: fixed;
+  inset: 0;
+  z-index: @z-silk;
+  overflow: hidden;
+  pointer-events: none;
+  background: @color-silk-base;
+
+  &__layer {
+    position: absolute;
+    inset: -10%;
+    background: @silk-landscape center / cover no-repeat;
+    will-change: transform;
+    animation-timing-function: @ease-silk;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+
+    @media (orientation: portrait) {
+      background-image: @silk-portrait;
+    }
+
+    &--base {
+      animation-name: silk-drift;
+      animation-duration: 20s;
+    }
+
+    &--ripple {
+      transform: scaleX(-1);
+      opacity: 0;
+      animation-name: silk-ripple;
+      animation-duration: 11s;
+    }
+  }
+
+  &__tint {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(45% 35% at 78% 22%, @color-silk-sage 0%, transparent 70%),
+      radial-gradient(40% 35% at 18% 82%, fade(@color-olive-light, 22%) 0%, transparent 72%),
+      radial-gradient(60% 45% at 50% 45%, fade(@color-white, 45%) 0%, transparent 75%);
+  }
+
+  &__sheen {
+    position: absolute;
+    inset: -20% -60%;
+    background: linear-gradient(105deg, transparent 40%, @color-silk-sheen 50%, transparent 60%);
+    mix-blend-mode: soft-light;
+    will-change: transform;
+    animation: silk-sheen 12s @ease-silk infinite;
+  }
+}
+
+@keyframes silk-drift {
+  from {
+    transform: translate3d(-2.5%, -1.5%, 0) scale(1.02) rotate(-0.6deg);
+  }
+  to {
+    transform: translate3d(2.5%, 2%, 0) scale(1.1) rotate(0.8deg);
+  }
+}
+
+@keyframes silk-ripple {
+  from {
+    opacity: 0;
+    transform: scaleX(-1) translate3d(3%, 1%, 0) scale(1.08);
+  }
+  to {
+    opacity: 0.32;
+    transform: scaleX(-1) translate3d(-3%, -2%, 0) scale(1.14);
+  }
+}
+
+@keyframes silk-sheen {
+  0% {
+    transform: translate3d(-45%, 0, 0);
+  }
+  55%,
+  100% {
+    transform: translate3d(45%, 0, 0);
+  }
+}

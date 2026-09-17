@@ -1,0 +1,94 @@
+@import (reference) '../../../styles/_variables.less';
+@import (reference) '../../../styles/_mixins.less';
+
+.story {
+  padding: 14vh 0;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    right: 0;
+    width: 140px;
+    height: 240px;
+    background-image: @decor-branch-left;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: scaleX(-1);
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  &__grid {
+    display: grid;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: center;
+
+    .respond-to(@bp-md, {
+      grid-template-columns: 1.1fr 0.9fr;
+    });
+  }
+
+  // Nadpis a jeho eyebrow su jeden blok, telo pribehu je dalsi. Globalny .h2 ma
+  // symetricky margin 0.35em, takze medzera nad nadpisom aj pod nim je rovnaka
+  // a mensia ako riadkovanie textu (11.7 px vs 26.9 px na mobile) - headline sa
+  // preto opticky lepil na prvy odstavec. Tu to rozdelime asymetricky.
+  &__text {
+    .eyebrow {
+      margin-bottom: 0.5rem;
+    }
+
+    .h2 {
+      margin-top: 0;
+      margin-bottom: clamp(1.5rem, 3vw, 2.4rem);
+    }
+  }
+
+  &__body {
+    color: @color-text;
+    margin-bottom: 1.1rem;
+    max-width: 46ch;
+    font-size: 1.02rem;
+  }
+
+  &__quote {
+    font-family: @font-display;
+    font-style: italic;
+    font-weight: @font-weight-light;
+    font-size: clamp(1.3rem, 3vw, 1.9rem);
+    line-height: 1.3;
+    color: @color-olive;
+    border-left: 3px solid @color-gold;
+    padding-left: 1.2rem;
+    margin-top: 1.6rem;
+  }
+
+  &__photo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+
+    figcaption {
+      font-size: 0.74rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: @color-text-muted;
+      text-align: center;
+    }
+  }
+
+  &__photo-frame {
+    aspect-ratio: 4 / 5;
+    border-radius: @radius-xs;
+    border: @hairline;
+    background-color: @color-olive-tint;
+    background-image: url('/hero.webp');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    box-shadow: 0 30px 60px -30px @color-photo-shadow;
+    position: relative;
+    overflow: hidden;
+  }
+}

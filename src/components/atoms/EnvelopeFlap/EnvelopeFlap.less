@@ -1,0 +1,76 @@
+@import (reference) '../../../styles/_variables.less';
+@import (reference) '../../../styles/_mixins.less';
+
+// Geometry custom properties (--env-*, --tip-*, --edge) come from the intro variant.
+@l: calc(var(--env-l) - var(--edge));
+@r: calc(var(--env-r) + var(--edge));
+@t: calc(var(--env-t) - var(--edge));
+@b: calc(var(--env-b) + var(--edge));
+@tip: var(--env-tip-x) var(--env-tip-y);
+
+.flap {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
+  pointer-events: none;
+
+  &__face {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    clip-path: var(--flap-clip);
+    user-select: none;
+
+    &--back {
+      .envelope-lining();
+      box-shadow: inset 0 0 0 0.35rem fade(@color-white, 80%);
+    }
+  }
+
+  &--top {
+    z-index: 8;
+    --flap-clip: polygon(@l @t, @r @t, @tip);
+    transform-origin: var(--env-tip-x) var(--env-t);
+
+    .flap__face--back {
+      transform: rotateY(180deg);
+      transform-origin: var(--env-cx) 50%;
+    }
+  }
+
+  &--bottom {
+    z-index: 5;
+    --flap-clip: polygon(@r @b, @l @b, @tip);
+    transform-origin: var(--env-tip-x) var(--env-b);
+
+    .flap__face--back {
+      transform: rotateY(180deg);
+      transform-origin: var(--env-cx) 50%;
+    }
+  }
+
+  &--left,
+  &--right {
+    z-index: 6;
+
+    .flap__face--back {
+      transform: rotateX(180deg);
+      transform-origin: 50% var(--env-cy);
+    }
+  }
+
+  &--left {
+    --flap-clip: polygon(@l @b, @l @t, @tip);
+    transform-origin: var(--env-l) var(--env-tip-y);
+  }
+
+  &--right {
+    --flap-clip: polygon(@r @t, @r @b, @tip);
+    transform-origin: var(--env-r) var(--env-tip-y);
+  }
+}

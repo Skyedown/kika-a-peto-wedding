@@ -1,0 +1,161 @@
+@import (reference) '../../../styles/_variables.less';
+@import (reference) '../../../styles/_mixins.less';
+
+// Frame mirrors object-fit: cover for the video's aspect ratio, so every layer
+// can be positioned in % of the source frame. --env-* is measured on the LAST
+// video frame (= the end still the flaps are cut from); --pos-* on the FIRST
+// one. Venovanie a lesk lezia na videu, tak sa pocas prehravania interpoluju
+// z --pos-* do --env-* (viz trackVideoZoom) - preto musia byt oba konce presne,
+// portrait --pos-* je exaktna inverzia --env-* cez nameraný zoom videa.
+.intro-frame-geometry(@aw, @ah, @l, @t, @r, @b, @tip-x, @tip-y) {
+  @cx: ((@l + @r) / 2);
+  @cy: ((@t + @b) / 2);
+
+  .intro__frame {
+    width: max(100vw, calc(100dvh * @aw / @ah));
+    height: max(100dvh, calc(100vw * @ah / @aw));
+    transform-origin: @cx @cy;
+    --env-l: @l;
+    --env-t: @t;
+    --env-r: @r;
+    --env-b: @b;
+    --env-cx: @cx;
+    --env-cy: @cy;
+    --env-tip-x: @tip-x;
+    --env-tip-y: @tip-y;
+    --edge: 0.9%;
+  }
+}
+
+.intro-poster-geometry(@l, @t, @r, @b, @tip-x, @tip-y) {
+  .intro__frame {
+    --pos-b: @b;
+    --pos-tip-x: @tip-x;
+    --pos-tip-y: @tip-y;
+    --pos-l: @l;
+    --pos-t: @t;
+    --pos-r: @r;
+  }
+}
+
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: @z-intro;
+  overflow: hidden;
+  background: @color-intro-surface;
+  touch-action: none;
+
+  &--portrait {
+    .intro-frame-geometry(4, 7, 22.7%, 23.7%, 77.2%, 72%, 50.7%, 47.6%);
+    .intro-poster-geometry(15.6%, 15.9%, 84.7%, 77.8%, 51.1%, 46.5%);
+  }
+
+  &--landscape {
+    .intro-frame-geometry(7, 4, 24.7%, 18.2%, 75.4%, 78.6%, 50.2%, 60.5%);
+    .intro-poster-geometry(24.7%, 18.2%, 75.4%, 78.6%, 50.2%, 60.5%);
+  }
+
+  &__frame {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    translate: -50% -50%;
+    container-type: inline-size;
+    will-change: transform;
+    --zoom-origin-x: 50%;
+    --zoom-origin-y: 50%;
+    --zoom-x: 1;
+    --zoom-y: 1;
+  }
+
+  // Vrstva, ktora kopiruje odzoomovanie videa. Venovanie v nej sedi na statickych
+  // percentach prvej snimky, takze sa pocas zoomu nikdy neprelayoutuje.
+  &__track {
+    position: absolute;
+    z-index: 7;
+    inset: 0;
+    transform-origin: var(--zoom-origin-x) var(--zoom-origin-y);
+    transform: scale(var(--zoom-x), var(--zoom-y));
+    will-change: transform;
+    pointer-events: none;
+  }
+
+  &__label {
+    position: absolute;
+    left: var(--pos-tip-x);
+    top: calc(var(--pos-tip-y) + (var(--pos-b) - var(--pos-tip-y)) * 0.52);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4em;
+    translate: -50% -50%;
+    width: calc(var(--pos-r) - var(--pos-l));
+    font-family: @font-display;
+    font-style: italic;
+    font-size: 4.4cqw;
+    line-height: 1.15;
+    text-align: center;
+    color: @color-paper-ink;
+    text-shadow:
+      0 0.0625rem 0 @color-paper-emboss,
+      0 -0.0625rem 0 fade(@color-text, 8%);
+    pointer-events: none;
+
+    .intro--landscape & {
+      font-size: 2.1cqw;
+    }
+  }
+
+  &__label-pre {
+    font-family: @font-body;
+    font-style: normal;
+    font-size: 0.5em;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: @color-gold;
+  }
+
+  &__sheen {
+    position: absolute;
+    z-index: 8;
+    inset: 0;
+    clip-path: inset(var(--pos-t) calc(100% - var(--pos-r)) calc(100% - var(--pos-b)) var(--pos-l));
+    transform-origin: var(--zoom-origin-x) var(--zoom-origin-y);
+    transform: scale(var(--zoom-x), var(--zoom-y));
+    background: linear-gradient(115deg, transparent 35%, fade(@color-white, 38%) 50%, transparent 65%);
+    background-size: 250% 100%;
+    mix-blend-mode: soft-light;
+    animation: intro-sheen 5.5s @ease-silk infinite;
+    pointer-events: none;
+  }
+
+  &__trigger {
+    position: absolute;
+    inset: 0;
+    z-index: 20;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+
+    &:disabled {
+      cursor: default;
+    }
+
+    &:focus-visible {
+      outline: 0.0625rem solid @color-olive-dark;
+      outline-offset: -1rem;
+    }
+  }
+}
+
+@keyframes intro-sheen {
+  0% {
+    background-position: 120% 0;
+  }
+  60%,
+  100% {
+    background-position: -120% 0;
+  }
+}

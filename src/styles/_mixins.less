@@ -1,0 +1,79 @@
+// ════════════════════════════════════════════════
+//  Reusable LESS mixins
+// ════════════════════════════════════════════════
+@import (reference) './_variables.less';
+
+// Mobile-first media query helper.
+// Usage: .respond-to(@bp-md, { letter-spacing: 0.08em; });
+.respond-to(@bp, @rules) {
+  @media (min-width: @bp) {
+    @rules();
+  }
+}
+
+// Max-width media query helper (for the few max-width tweaks in the design).
+.respond-below(@bp, @rules) {
+  @media (max-width: @bp) {
+    @rules();
+  }
+}
+
+.flex-center() {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visually-hidden() {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+// Refined ligatures/kerning for display headings.
+.refined-type() {
+  font-feature-settings:
+    'liga' 1,
+    'kern' 1;
+}
+
+// Shared eyebrow label style (tiny tracked-out uppercase olive label).
+.eyebrow-label() {
+  font-family: @font-body;
+  font-weight: @font-weight-regular;
+  font-size: 0.74rem;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: @color-olive;
+}
+
+// Eucalyptus liner printed on the inside of the envelope and its flap.
+.envelope-lining() {
+  background-color: @color-envelope-lining;
+  background-image:
+    radial-gradient(120% 90% at 50% 0%, fade(@color-white, 55%) 0%, transparent 65%), @decor-branch-left,
+    @decor-branch-left;
+  background-size:
+    100% 100%,
+    3.2rem 5.4rem,
+    3.2rem 5.4rem;
+  background-position:
+    0 0,
+    0 0,
+    1.6rem 2.7rem;
+}
+
+// Handmade cotton paper: soft fibres + fine grain, lit from the top-left.
+.paper-texture() {
+  background-color: @color-white;
+  background-image:
+    linear-gradient(135deg, fade(@color-white, 70%) 0%, transparent 45%, fade(@color-gold, 14%) 100%),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.045 0.06' numOctaves='4' seed='11'/%3E%3CfeDiffuseLighting surfaceScale='2' diffuseConstant='1.05' lighting-color='%23fff'%3E%3CfeDistantLight azimuth='225' elevation='55'/%3E%3C/feDiffuseLighting%3E%3CfeComponentTransfer%3E%3CfeFuncR type='linear' slope='0.2' intercept='0.8'/%3E%3CfeFuncG type='linear' slope='0.2' intercept='0.8'/%3E%3CfeFuncB type='linear' slope='0.2' intercept='0.81'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  background-size:
+    100% 100%,
+    15rem 15rem;
+  background-blend-mode: normal, multiply;
+}

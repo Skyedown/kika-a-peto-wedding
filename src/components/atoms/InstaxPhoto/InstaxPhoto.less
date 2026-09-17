@@ -1,0 +1,95 @@
+@import (reference) '../../../styles/_variables.less';
+@import (reference) '../../../styles/_mixins.less';
+
+// Instax mini: narrow white frame, deep bottom margin, washi-tape strip.
+.instax {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 10rem;
+  padding: 0.45rem 0.45rem 0;
+  background: @color-white;
+  border-radius: 0.2rem;
+  box-shadow:
+    0 0.1rem 0.25rem fade(@color-text, 18%),
+    0 1.2rem 2.2rem -0.8rem fade(@color-text, 45%);
+  .paper-texture();
+
+  &__window {
+    display: block;
+    aspect-ratio: 46 / 62;
+    overflow: hidden;
+    background: @color-gold-tint;
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: saturate(0.9) contrast(1.04);
+  }
+
+  &__caption {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 1.9em;
+    padding: 0.15rem 0.2rem 0.25rem;
+    font-family: @font-display;
+    font-style: italic;
+    font-size: 0.95em;
+    line-height: 1.1;
+    color: @color-text;
+    text-align: center;
+  }
+
+  &--tape-top::before,
+  &--tape-corner::before {
+    content: '';
+    position: absolute;
+    z-index: 1;
+    width: 48%;
+    height: 1.1rem;
+    background:
+      repeating-linear-gradient(90deg, fade(@color-white, 25%) 0 0.35rem, transparent 0.35rem 0.7rem),
+      fade(@color-olive-light, 78%);
+    clip-path: polygon(
+      0 12%,
+      6% 0,
+      12% 14%,
+      20% 2%,
+      30% 12%,
+      42% 0,
+      55% 10%,
+      68% 0,
+      80% 12%,
+      90% 2%,
+      100% 10%,
+      97% 50%,
+      100% 88%,
+      92% 100%,
+      82% 88%,
+      70% 100%,
+      58% 90%,
+      45% 100%,
+      32% 88%,
+      20% 100%,
+      9% 90%,
+      0 100%,
+      3% 50%
+    );
+    box-shadow: 0 0.05rem 0.2rem fade(@color-text, 12%);
+  }
+
+  &--tape-top::before {
+    top: -0.55rem;
+    left: 26%;
+    transform: rotate(-4deg);
+  }
+
+  &--tape-corner::before {
+    top: 0.2rem;
+    right: -1.3rem;
+    transform: rotate(42deg);
+  }
+}

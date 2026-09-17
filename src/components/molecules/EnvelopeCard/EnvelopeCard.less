@@ -1,0 +1,74 @@
+@import (reference) '../../../styles/_variables.less';
+@import (reference) '../../../styles/_mixins.less';
+
+.envelope-card {
+  position: absolute;
+  z-index: 2;
+  left: calc(var(--env-l) + (var(--env-r) - var(--env-l)) * 0.08);
+  top: calc(var(--env-t) + (var(--env-b) - var(--env-t)) * 0.07);
+  width: calc((var(--env-r) - var(--env-l)) * 0.84);
+  height: calc((var(--env-b) - var(--env-t)) * 0.86);
+  container-type: size;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2.4cqmin;
+  text-align: center;
+  border: 0.0625rem solid @color-gold-light;
+  outline: 0.0625rem solid fade(@color-gold-light, 60%);
+  outline-offset: -2.2cqmin;
+  box-shadow: 0 0.2rem 0.9rem fade(@color-olive-dark, 22%);
+  will-change: transform;
+  .paper-texture();
+
+  &__eyebrow {
+    font-family: @font-body;
+    font-size: 3.2cqmin;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: @color-gold;
+  }
+
+  // Cormorant Garamond ma podlahu na vahe 300, takze jedina zostavajuca paka na
+  // tenkost je stupen - hrubka tahu skaluje s nim. Prestrkanie drzi monogram
+  // opticky rovnako siroky ako predtym.
+  &__monogram {
+    font-family: @font-display;
+    font-weight: @font-weight-light;
+    font-size: 13cqmin;
+    letter-spacing: 0.07em;
+    line-height: 1;
+    color: @color-text;
+    .refined-type();
+  }
+
+  &__amp {
+    margin-inline: 0.12em;
+    font-style: italic;
+    font-size: 0.55em;
+    color: @color-gold;
+  }
+
+  &__divider {
+    width: 16cqmin;
+    height: 0.0625rem;
+    background: linear-gradient(90deg, transparent, @color-gold, transparent);
+  }
+
+  &__recipient {
+    max-width: 88%;
+    font-family: @font-display;
+    font-style: italic;
+    font-size: 7cqmin;
+    line-height: 1.15;
+    color: @color-olive-dark;
+  }
+
+  &__date {
+    font-family: @font-body;
+    font-size: 3.2cqmin;
+    letter-spacing: 0.3em;
+    color: @color-text-muted;
+  }
+}

@@ -1,0 +1,77 @@
+@import (reference) '../../../styles/_variables.less';
+
+.tap-hint {
+  position: absolute;
+  z-index: 10;
+  left: 50%;
+  bottom: max(6dvh, calc(env(safe-area-inset-bottom) + 1.5rem));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  transform: translateX(-50%);
+  pointer-events: none;
+
+  &__label {
+    font-family: @font-body;
+    font-size: 0.7rem;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    color: @color-text;
+    opacity: 0.72;
+    animation: tap-hint-breathe 2.8s ease-in-out infinite;
+
+    &--pointer {
+      display: none;
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      &--touch {
+        display: none;
+      }
+
+      &--pointer {
+        display: inline;
+      }
+    }
+  }
+
+  &__spinner {
+    width: 1.6rem;
+    height: 1.6rem;
+    border-radius: @radius-pill;
+    border: 0.0625rem solid fade(@color-gold, 35%);
+    border-top-color: @color-olive-dark;
+    opacity: 0;
+    transition: opacity @transition-fast;
+    animation: tap-hint-spin 0.9s linear infinite;
+  }
+
+  &--loading {
+    .tap-hint__spinner {
+      opacity: 1;
+    }
+
+    .tap-hint__label {
+      animation: none;
+      opacity: 0.4;
+    }
+  }
+}
+
+@keyframes tap-hint-breathe {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 0.85;
+  }
+}
+
+@keyframes tap-hint-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

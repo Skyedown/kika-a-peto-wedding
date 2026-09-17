@@ -1,0 +1,118 @@
+@import (reference) '../../../styles/_variables.less';
+@import (reference) '../../../styles/_mixins.less';
+
+.faq {
+  padding: max(10vh, 11.5rem) 0;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 2rem;
+    right: -10px;
+    width: 120px;
+    height: 200px;
+    background-image: @decor-branch-left;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: scaleX(-1) rotate(10deg);
+    pointer-events: none;
+    opacity: 0.4;
+  }
+}
+
+.accordion {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+.faq {
+  &__panel.panel {
+    background: linear-gradient(
+      155deg,
+      lighten(@color-faq-panel, 9%) 0%,
+      @color-faq-panel 50%,
+      darken(@color-faq-panel, 7%) 100%
+    );
+    border-color: fade(@color-white, 18%);
+    color: @color-white;
+    text-align: center;
+
+    .eyebrow {
+      color: fade(@color-white, 75%);
+    }
+
+    .section-head::after {
+      background: linear-gradient(90deg, transparent, fade(@color-white, 70%), transparent);
+    }
+
+    .acc {
+      border-bottom-color: fade(@color-white, 22%);
+    }
+
+    .acc__q {
+      justify-content: center;
+      font-style: italic;
+      font-size: clamp(1.35rem, 3.6vw, 1.75rem);
+      color: @color-white;
+      text-align: center;
+    }
+
+    .acc__sign::before,
+    .acc__sign::after {
+      background: fade(@color-white, 80%);
+    }
+
+    .acc__a p {
+      margin-inline: auto;
+      color: fade(@color-white, 82%);
+    }
+  }
+}
+
+// Instant photos pinned to both sides of the panel, out of the text flow.
+.faq__instax {
+  position: absolute;
+  z-index: @z-content;
+  width: 6rem;
+  font-size: 0.775rem;
+
+  &--1 {
+    top: -7.75rem;
+    left: -0.5rem;
+    transform: rotate(-9deg);
+  }
+
+  &--2 {
+    top: -7.75rem;
+    right: -0.5rem;
+    transform: rotate(8deg);
+  }
+
+  &--3 {
+    bottom: -7.75rem;
+    right: -0.5rem;
+    transform: rotate(-5deg);
+  }
+
+  .respond-to(@bp-lg, {
+    width: 11.875rem;
+    font-size: 1.188rem;
+
+    &--1 {
+      top: 3.4rem;
+      left: 2rem;
+    }
+
+    &--2 {
+      top: 42%;
+      right: 5.625rem;
+    }
+
+    &--3 {
+      right: auto;
+      bottom: 3.75rem;
+      left: 7.5rem;
+    }
+  });
+}

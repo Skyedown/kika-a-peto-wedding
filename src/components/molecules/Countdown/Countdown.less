@@ -1,0 +1,42 @@
+@import (reference) '../../../styles/_variables.less';
+@import (reference) '../../../styles/_mixins.less';
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  width: min(92vw, 30rem);
+  margin-top: 0.8rem;
+  border-top: 0.0625rem solid @color-gold;
+  border-bottom: 0.0625rem solid @color-gold;
+
+  &__unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.9rem 0.4rem 0.8rem;
+
+    & + & {
+      border-left: 0.0625rem solid @color-gold;
+    }
+  }
+
+  &__value {
+    font-family: @font-display;
+    font-weight: @font-weight-light;
+    font-size: clamp(1.9rem, 7vw, 2.8rem);
+    line-height: 1;
+    color: @color-text;
+    font-variant-numeric: tabular-nums lining-nums;
+    text-shadow: 0 0.0625rem 0 @color-silk-highlight;
+    .refined-type();
+  }
+
+  &__label {
+    font-family: @font-body;
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: @color-text-muted;
+  }
+}

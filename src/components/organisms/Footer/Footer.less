@@ -1,0 +1,173 @@
+@import (reference) '../../../styles/_variables.less';
+@import (reference) '../../../styles/_mixins.less';
+
+.footer {
+  padding: 12vh 1rem 6vh;
+  text-align: center;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 2rem;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    transform: translateX(-50%);
+    background-image: @decor-sprig;
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  &__collage {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-rows: repeat(3, 4.5rem) auto repeat(3, 4.5rem);
+    gap: 0.6rem;
+    max-width: 78rem;
+    margin-inline: auto;
+
+    .respond-to(@bp-md, {
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      grid-template-rows: repeat(3, 5.5rem) auto repeat(3, 5.5rem);
+      gap: 1rem;
+    });
+  }
+
+  &__photo {
+    position: relative;
+    overflow: hidden;
+    background: @color-gold-tint;
+    box-shadow: 0 1rem 2rem -1.2rem @color-photo-shadow;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      // Poistka: bez vypocitanej hodnoty (inline style) sa fotka zarovna k hornej
+      // tretine, aby sa pri vymene fotky nezareza hlava.
+      object-position: 50% 28%;
+    }
+
+    &--a {
+      grid-area: 1 / 1 / 4 / 4;
+    }
+    &--b {
+      grid-area: 1 / 4 / 3 / 6;
+      margin-top: 1rem;
+    }
+    &--c {
+      grid-area: 3 / 4 / 4 / 7;
+      margin-left: 1.5rem;
+    }
+    &--g {
+      grid-area: 5 / 1 / 7 / 4;
+      margin-top: 1rem;
+    }
+    &--h {
+      grid-area: 5 / 4 / 8 / 7;
+    }
+    &--i {
+      grid-area: 7 / 2 / 8 / 4;
+      margin-right: 1rem;
+    }
+
+    &--d,
+    &--e,
+    &--f {
+      display: none;
+    }
+
+    .respond-to(@bp-md, {
+      &--a { grid-area: 1 / 1 / 4 / 4; }
+      &--b { grid-area: 1 / 5 / 3 / 7; margin-top: 2rem; }
+      &--c { grid-area: 2 / 7 / 4 / 9; margin-left: 1rem; }
+      &--d { grid-area: 1 / 10 / 4 / 13; display: block; margin-top: 1.5rem; }
+      &--e { grid-area: 4 / 1 / 5 / 3; display: block; align-self: center; height: clamp(14rem, 22vw, 19rem); }
+      &--f { grid-area: 4 / 11 / 5 / 13; display: block; align-self: end; height: clamp(15rem, 24vw, 21rem); }
+      &--g { grid-area: 5 / 2 / 8 / 5; margin-top: 1rem; }
+      &--h { grid-area: 5 / 9 / 8 / 12; margin-bottom: 1.5rem; }
+      &--i { grid-area: 5 / 6 / 7 / 8; margin: 2rem 0 0 1.5rem; }
+    });
+  }
+
+  &__inner {
+    grid-area: 4 / 1 / 5 / 7;
+    padding: 2.5rem 0;
+    position: relative;
+    z-index: @z-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.7rem;
+
+    .respond-to(@bp-md, {
+      grid-area: 4 / 3 / 5 / 11;
+      padding: 3rem 1rem;
+    });
+  }
+
+  &__names {
+    font-family: @font-display;
+    font-weight: @font-weight-light;
+    font-size: clamp(2.6rem, 8vw, 5rem);
+    line-height: 1;
+  }
+
+  &__date {
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    color: @color-text-muted;
+  }
+
+  &__hash {
+    font-family: @font-display;
+    font-style: italic;
+    font-size: 1.3rem;
+    background: linear-gradient(135deg, @color-olive, @color-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-top: 0.4rem;
+  }
+
+  &__links {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 1.2rem;
+    font-size: 0.8rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+
+    a {
+      color: @color-olive;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: @transition-fast;
+    }
+
+    a:hover {
+      border-color: @color-olive;
+    }
+  }
+
+  &__credit {
+    margin-top: 2rem;
+    font-size: 0.74rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: @color-text-muted;
+  }
+
+  &__heart {
+    width: 0.9em;
+    height: 0.9em;
+    margin-left: 0.3rem;
+    color: @color-gold;
+  }
+}

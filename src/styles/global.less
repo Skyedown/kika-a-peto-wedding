@@ -1,0 +1,56 @@
+// ════════════════════════════════════════════════
+//  Global entry point — imported once in main.tsx
+// ════════════════════════════════════════════════
+@import './_variables.less';
+@import './_mixins.less';
+@import './_reset.less';
+@import './_typography.less';
+
+section {
+  position: relative;
+}
+
+html.is-scroll-locked {
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+#content {
+  position: relative;
+}
+
+// ── Shared frosted panel container ──
+.panel {
+  position: relative;
+  z-index: @z-content;
+  width: min(92%, @maxw);
+  margin-inline: auto;
+  background: @color-panel-bg;
+  backdrop-filter: blur(7px) saturate(105%);
+  -webkit-backdrop-filter: blur(7px) saturate(105%);
+  border: @hairline;
+  border-radius: @radius-sm;
+  padding: clamp(2rem, 5vw, 4.5rem);
+
+  &--olive {
+    background: @color-olive-tint;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    max-width: 760px;
+  }
+}
+
+// ── GSAP reveal base state ──
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+  }
+}

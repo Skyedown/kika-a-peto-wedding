@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120">
+  <defs>
+    <radialGradient id="seal-base" cx="38%" cy="32%" r="65%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.35"/>
+      <stop offset="50%" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.15"/>
+    </radialGradient>
+    <linearGradient id="seal-rim-hi" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#fff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.3"/>
+    </linearGradient>
+    <radialGradient id="seal-channel" cx="55%" cy="55%" r="50%">
+      <stop offset="0%" stop-color="#000" stop-opacity="0.08"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.2"/>
+    </radialGradient>
+    <radialGradient id="seal-face" cx="42%" cy="38%" r="60%">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.06"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Base disc -->
+  <circle cx="60" cy="60" r="54" fill="#FFFFFF"/>
+  <!-- 3D lighting overlay -->
+  <circle cx="60" cy="60" r="54" fill="url(#seal-base)"/>
+
+  <!-- Raised rim -->
+  <circle cx="60" cy="60" r="49" fill="none" stroke="url(#seal-rim-hi)" stroke-width="6"/>
+  <!-- Inner edge highlight -->
+  <circle cx="60" cy="60" r="46.5" fill="none" stroke="rgba(255,255,255,0.7)" stroke-width="1"/>
+  <!-- Outer edge shadow -->
+  <circle cx="60" cy="60" r="51.5" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="1"/>
+
+  <!-- Channel -->
+  <circle cx="60" cy="60" r="45" fill="url(#seal-channel)"/>
+
+  <!-- Raised center face -->
+  <circle cx="60" cy="60" r="42" fill="#FFFFFF"/>
+  <circle cx="60" cy="60" r="42" fill="url(#seal-face)"/>
+
+  <!-- Initials -->
+  <text x="50" y="50" font-family="'Cormorant Garamond', Georgia, serif" font-size="36" font-weight="500" fill="#A8A8B0" text-anchor="middle" dominant-baseline="central">K</text>
+  <text x="60" y="60" font-family="'Cormorant Garamond', Georgia, serif" font-size="20" font-style="italic" fill="#A8A8B0" fill-opacity="0.8" text-anchor="middle" dominant-baseline="central">&amp;</text>
+  <text x="70" y="70" font-family="'Cormorant Garamond', Georgia, serif" font-size="36" font-weight="500" fill="#A8A8B0" text-anchor="middle" dominant-baseline="central">P</text>
+</svg>

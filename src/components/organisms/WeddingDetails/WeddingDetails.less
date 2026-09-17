@@ -1,0 +1,110 @@
+@import (reference) '../../../styles/_variables.less';
+@import (reference) '../../../styles/_mixins.less';
+
+.details {
+  padding: max(10vh, 11.5rem) 0 max(10vh, 11.5rem);
+  overflow: hidden;
+
+  // Subtle dot pattern across the background
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: @decor-dots;
+    background-size: 60px 60px;
+    pointer-events: none;
+    opacity: 0.6;
+  }
+
+  &__grid {
+    display: grid;
+    gap: 1.4rem;
+
+    .respond-to(@bp-md, {
+      grid-template-columns: repeat(3, 1fr);
+    });
+  }
+
+  // Vsetky tri body programu su na tej istej adrese, takze mapa patri sekcii,
+  // nie jednotlivym kartam. Je to jediny plny prvok sekcie, aby destinacia
+  // nezanikla medzi tromi tichymi kartami - iframe s mapou tu nechceme.
+  &__map {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    margin-top: 2.2rem;
+
+    .btn--solid {
+      gap: 0.55rem;
+      min-height: 3.4rem;
+      padding: 0 2.6rem;
+      font-size: 0.86rem;
+      letter-spacing: 0.18em;
+    }
+  }
+
+  &__map-pin {
+    width: 1.15rem;
+    height: 1.15rem;
+    flex: none;
+  }
+
+  &__map-venue {
+    font-family: @font-display;
+    font-style: italic;
+    font-size: 1.15rem;
+    color: @color-text-muted;
+  }
+
+  &__dress {
+    text-align: center;
+    margin-top: 2.4rem;
+    color: @color-text-muted;
+    font-style: italic;
+    font-family: @font-display;
+    font-size: 1.25rem;
+  }
+
+  &__heart {
+    width: 0.9em;
+    height: 0.9em;
+    margin-left: 0.32rem;
+    color: @color-gold;
+  }
+}
+
+// Instantné fotky zastrčené do rohov panelu.
+.details__instax {
+  position: absolute;
+  z-index: @z-content;
+  width: 6.25rem;
+  font-size: 0.775rem;
+
+  &--first {
+    top: -8rem;
+    left: -1rem;
+    transform: rotate(-7deg);
+  }
+
+  &--second {
+    bottom: -8rem;
+    right: -0.5rem;
+    transform: rotate(6deg);
+  }
+
+  .respond-to(@bp-md, {
+    width: 10rem;
+    font-size: 1.062rem;
+
+    &--first {
+      top: -6.5rem;
+      left: -7.5rem;
+    }
+
+    &--second {
+      bottom: -4.25rem;
+      right: -7.5rem;
+    }
+  });
+}

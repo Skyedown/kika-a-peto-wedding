@@ -1,0 +1,239 @@
+@import (reference) '../../../styles/_variables.less';
+@import (reference) '../../../styles/_mixins.less';
+
+.hero {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 8vh 1.2rem;
+  overflow: hidden;
+
+  // Decorative botanical branches in corners
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    width: 160px;
+    height: 280px;
+    background-image: @decor-branch-left;
+    background-size: contain;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.7;
+  }
+
+  &::before {
+    top: 4vh;
+    left: -10px;
+  }
+
+  &::after {
+    bottom: 4vh;
+    right: -10px;
+    transform: rotate(180deg);
+  }
+
+  &__inner {
+    position: relative;
+    z-index: @z-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.1rem;
+  }
+
+  &__eyebrow {
+    .eyebrow-label();
+  }
+
+  &__ring {
+    width: 74px;
+    height: 74px;
+    color: @color-olive;
+    filter: drop-shadow(0 2px 8px @color-shadow-gold);
+  }
+
+  &__ring-circle {
+    fill: none;
+    stroke: @color-gold;
+    stroke-width: 1;
+  }
+
+  &__ring-leaf {
+    fill: @color-gold-light;
+    fill-opacity: 0.35;
+    stroke: @color-gold;
+    stroke-width: 1.2;
+  }
+
+  &__title {
+    font-family: @font-display;
+    font-weight: @font-weight-light;
+    font-size: clamp(3.2rem, 12vw, 8rem);
+    line-height: 0.94;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: @color-text;
+    .refined-type();
+
+    .respond-to(@bp-md, {
+      flex-direction: row;
+      gap: 0.35em;
+      align-items: baseline;
+    });
+  }
+
+  &__amp {
+    color: @color-gold;
+    font-style: italic;
+    font-size: 0.5em;
+    margin: 0.05em 0;
+    font-weight: @font-weight-light;
+
+    .respond-to(@bp-md, {
+      font-size: 0.42em;
+      align-self: center;
+    });
+  }
+
+  &__name .char {
+    display: inline-block;
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+
+  &__date {
+    font-family: @font-body;
+    font-weight: @font-weight-light;
+    font-size: clamp(0.78rem, 2.4vw, 1rem);
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: @color-text-muted;
+    margin-top: 0.4rem;
+  }
+
+  &__scroll {
+    position: absolute;
+    z-index: @z-content;
+    bottom: 4vh;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: @color-text-muted;
+    font-family: @font-body;
+    font-size: 0.62rem;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    transition: opacity @transition-slow;
+
+    svg {
+      width: 22px;
+      height: 22px;
+      fill: none;
+      stroke: @color-olive;
+      stroke-width: 1.4;
+      animation: hero-bob 2s ease-in-out infinite;
+    }
+
+    &--hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+}
+
+// ── Compact variant (shown above envelope on invite pages) ──
+.hero--compact {
+  min-height: auto;
+  padding: 0 1rem;
+
+  &::before,
+  &::after {
+    display: none;
+  }
+
+  .hero__inner {
+    gap: 0.45rem;
+
+    .respond-to(@bp-md, {
+      gap: clamp(0.45rem, 1vh, 0.7rem);
+    });
+  }
+
+  .hero__eyebrow {
+    font-size: 0.64rem;
+  }
+
+  .hero__title {
+    flex-direction: row;
+    align-items: baseline;
+    gap: 0.28em;
+    font-size: clamp(2.5rem, 11vw, 5.5rem);
+  }
+
+  .hero__amp {
+    align-self: center;
+    font-size: 0.45em;
+    margin: 0;
+  }
+
+  .hero__date {
+    margin-top: 0;
+    font-size: 0.62rem;
+    letter-spacing: 0.2em;
+
+    .respond-to(@bp-md, {
+      font-size: 0.85rem;
+      letter-spacing: 0.34em;
+    });
+  }
+
+  .countdown {
+    margin-top: 0.4rem;
+
+    .respond-to(@bp-md, {
+      margin-top: 0.8rem;
+    });
+  }
+
+  .countdown__unit {
+    padding: 0.5rem 0.3rem 0.45rem;
+
+    .respond-to(@bp-md, {
+      padding: clamp(0.5rem, 1.2vh, 0.9rem) 0.4rem clamp(0.45rem, 1vh, 0.8rem);
+    });
+  }
+
+  .countdown__value {
+    font-size: clamp(1.6rem, 7vw, 2.8rem);
+  }
+
+  .countdown__label {
+    font-size: 0.55rem;
+
+    .respond-to(@bp-md, {
+      font-size: 0.62rem;
+    });
+  }
+}
+
+@keyframes hero-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}

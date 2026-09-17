@@ -1,0 +1,17 @@
+node_modules/
+dist/
+*.tsbuildinfo
+
+# Editor / OS
+.DS_Store
+.idea/
+.vscode/
+
+# Tooling scratch
+.playwright-mcp/
+.eslintcache
+
+# Local env
+.env
+.env.*
+!.env.example

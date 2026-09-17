@@ -1,0 +1,17 @@
+@import (reference) '../../../styles/_variables.less';
+
+.section-head {
+  position: relative;
+  z-index: @z-content;
+  margin-bottom: clamp(2rem, 4vw, 3.2rem);
+
+  // Decorative gold line beneath heading
+  &::after {
+    content: '';
+    display: block;
+    width: 48px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, @color-gold, transparent);
+    margin: 1rem auto 0;
+  }
+}

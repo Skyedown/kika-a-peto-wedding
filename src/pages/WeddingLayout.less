@@ -1,0 +1,19 @@
+@import (reference) '../styles/_variables.less';
+@import (reference) '../styles/_mixins.less';
+
+// Invitation (names, countdown, card) centred in the visible viewport; the
+// scroll hint sits in the bottom padding so it never shifts the centre.
+.opening {
+  position: relative;
+  z-index: @z-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  padding-block: max(@opening-edge, env(safe-area-inset-top)) max(@opening-edge, env(safe-area-inset-bottom));
+
+  .respond-to(@bp-md, {
+    padding-block: @opening-edge-md;
+  });
+}

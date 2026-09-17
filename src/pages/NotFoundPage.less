@@ -1,0 +1,47 @@
+@import (reference) '../styles/_variables.less';
+
+.notfound {
+  position: relative;
+  z-index: @z-content;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10vh 1.2rem;
+  text-align: center;
+  background: @color-olive-tint;
+
+  &__card {
+    width: min(92%, 560px);
+    background: @color-white;
+    border: @hairline;
+    border-radius: @radius-md;
+    padding: clamp(2.4rem, 6vw, 4.5rem);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    box-shadow: 0 40px 80px -40px @color-shadow-olive-soft;
+  }
+
+  &__eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: @color-olive;
+  }
+
+  &__title {
+    font-family: @font-display;
+    font-weight: @font-weight-light;
+    font-size: clamp(2.6rem, 8vw, 4rem);
+    line-height: 1.05;
+    color: @color-text;
+  }
+
+  &__text {
+    color: @color-text-muted;
+    max-width: 42ch;
+    font-size: 1.05rem;
+  }
+}

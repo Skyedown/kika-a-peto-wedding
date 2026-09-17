@@ -1,0 +1,39 @@
+// ════════════════════════════════════════════════
+//  Base typography & document defaults
+//  Fonts are loaded via <link> in index.html.
+// ════════════════════════════════════════════════
+@import (reference) './_variables.less';
+@import (reference) './_mixins.less';
+
+html {
+  scroll-behavior: auto;
+}
+
+body {
+  background: @color-bg;
+  color: @color-text;
+  font-family: @font-body;
+  font-weight: @font-weight-light;
+  line-height: @line-height-body;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+// ── Shared type scale (used across multiple sections) ──
+.eyebrow {
+  .eyebrow-label();
+}
+
+.h2 {
+  font-family: @font-display;
+  font-style: italic;
+  font-weight: @font-weight-light;
+  font-size: clamp(2.1rem, 5vw, 3.6rem);
+  line-height: 1.05;
+  .refined-type();
+  margin: 0.35em 0;
+
+  &--center {
+    text-align: center;
+  }
+}

@@ -1,0 +1,70 @@
+@import (reference) '../../../styles/_variables.less';
+@import (reference) '../../../styles/_mixins.less';
+
+.event {
+  border: @hairline;
+  border-top: 3px solid @color-olive;
+  border-radius: @radius-xs;
+  padding: 2rem 1.6rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  background: @color-card-bg;
+  transition:
+    transform @transition-fast,
+    box-shadow @transition-fast;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px -12px @color-shadow-olive;
+  }
+
+  &__icon {
+    color: @color-gold;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.2rem;
+  }
+
+  &__icon-svg {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
+
+  &__title {
+    font-family: @font-display;
+    font-weight: @font-weight-light;
+    font-size: 1.5rem;
+    line-height: 1.12;
+    min-height: 2.24em;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    text-align: center;
+  }
+
+  &__time {
+    font-family: @font-display;
+    font-style: italic;
+    font-size: 1.6rem;
+    color: @color-gold;
+  }
+
+  &__venue {
+    font-weight: @font-weight-regular;
+    min-height: 2.6em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  &__addr {
+    min-height: 1.5em;
+    color: @color-text-muted;
+    font-size: 0.88rem;
+  }
+}

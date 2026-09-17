@@ -1,0 +1,31 @@
+@import (reference) '../../../styles/_variables.less';
+@import (reference) '../../../styles/_mixins.less';
+
+.intro__layers {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  perspective: 140vmax;
+  perspective-origin: var(--env-cx) var(--env-cy);
+}
+
+.intro__still {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+  user-select: none;
+}
+
+.intro__lining {
+  position: absolute;
+  z-index: 1;
+  left: var(--env-l);
+  top: var(--env-t);
+  width: calc(var(--env-r) - var(--env-l));
+  height: calc(var(--env-b) - var(--env-t));
+  .envelope-lining();
+  box-shadow: inset 0 0 1.5rem fade(@color-olive-dark, 18%);
+}

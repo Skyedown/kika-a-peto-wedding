@@ -1,0 +1,106 @@
+@import (reference) '../../../styles/_variables.less';
+@import (reference) '../../../styles/_mixins.less';
+
+.countdown-banner {
+  position: relative;
+  z-index: @z-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: clamp(26rem, 72vh, 44rem);
+  margin: 10vh 0;
+  overflow: hidden;
+  color: @color-white;
+  text-align: center;
+
+  &__media {
+    position: absolute;
+    inset: -10% 0;
+  }
+
+  &__photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 30%;
+    will-change: transform;
+  }
+
+  &__shade {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(70% 60% at 50% 55%, @color-countdown-shade-soft 0%, @color-countdown-shade 100%),
+      linear-gradient(
+        180deg,
+        @color-countdown-shade-soft 0%,
+        transparent 35%,
+        transparent 65%,
+        @color-countdown-shade-soft 100%
+      );
+  }
+
+  &__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  &__eyebrow {
+    font-family: @font-body;
+    font-weight: @font-weight-regular;
+    font-size: clamp(0.7rem, 2vw, 0.85rem);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    text-shadow: 0 0 0.9rem @color-countdown-glow;
+  }
+
+  &__clock {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    gap: clamp(0.3rem, 2vw, 1.4rem);
+  }
+
+  &__unit {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    min-width: 2ch;
+  }
+
+  &__value,
+  &__colon {
+    font-family: @font-display;
+    font-style: italic;
+    font-weight: @font-weight-light;
+    font-size: clamp(3rem, 12vw, 8rem);
+    line-height: 1;
+    font-variant-numeric: tabular-nums lining-nums;
+    .refined-type();
+    text-shadow:
+      0 0 0.12em @color-countdown-glow,
+      0 0 0.6em @color-countdown-glow;
+  }
+
+  &__colon {
+    opacity: 0.7;
+  }
+
+  &__label {
+    font-family: @font-body;
+    font-size: clamp(0.58rem, 1.6vw, 0.78rem);
+    font-weight: @font-weight-regular;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    text-shadow: 0 0 0.6rem @color-countdown-glow;
+  }
+
+  &__cta {
+    margin-top: 1.8rem;
+  }
+}
