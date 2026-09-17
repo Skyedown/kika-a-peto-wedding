@@ -68,16 +68,18 @@
   width: 6.25rem;
   font-size: 0.775rem;
 
+  // Prva je vpravo hore, druha vlavo dole. Naklon je zrkadlovy k stranu, na
+  // ktorej fotka visi.
   &--first {
     top: -8rem;
-    left: -1rem;
-    transform: rotate(-7deg);
+    right: -0.5rem;
+    transform: rotate(7deg);
   }
 
   &--second {
     bottom: -8rem;
-    right: -0.5rem;
-    transform: rotate(6deg);
+    left: -1rem;
+    transform: rotate(-6deg);
   }
 
   .respond-to(@bp-md, {
@@ -86,12 +88,12 @@
 
     &--first {
       top: -6.5rem;
-      left: -7.5rem;
+      right: -7.5rem;
     }
 
     &--second {
       bottom: -4.25rem;
-      right: -7.5rem;
+      left: -7.5rem;
     }
   });
 }
