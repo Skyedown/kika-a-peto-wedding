@@ -141,7 +141,7 @@ export const faqs: FaqEntry[] = [
   {
     question: 'Kedy mám potvrdiť účasť?',
     answer:
-      'Prosíme o potvrdenie najneskôr do 30. apríla 2027 cez tlačidlo RSVP vo vašej pozvánke. Formulár vyplňte za pár/rodinu, nie samostatne za každú osobu.',
+      'Prosíme o potvrdenie účasti najneskôr do 15. marca 2027 cez tlačidlo "Potvrdiť účasť" vo Vašej pozvánke. Formulár prosím vyplňte za pár/rodinu, nie samostatne za každú osobu.',
   },
 ];
 
