@@ -11,6 +11,10 @@ dist/
 .playwright-mcp/
 .eslintcache
 
+# Lokalne nastavenia Claude Code - obsahuju cesty k inym projektom, do repa
+# nepatria. Nespoliehame sa na globalny gitignore, ktory plati len na jednom stroji.
+.claude/settings.local.json
+
 # Local env
 .env
 .env.*
