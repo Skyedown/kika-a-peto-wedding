@@ -11,12 +11,11 @@ export const OurStory = () => (
           aj nás uchýliť sa k zoznamkám.
         </p>
         <p className="story__body reveal">
-          Jeden z nás tam triedil roky zrno od pliev ako popoluška, kým ten druhý došiel a našiel hotovú princeznu.
+          Jeden z nás tam triedil roky zrno od pliev ako popoluška, kým ten druhý došiel a našiel hotovú princeznú.
         </p>
         <p className="story__body reveal">
-          Dva roky na to tu teraz čítate náš príbeh, ktorý je dôkazom toho, že aj v dnešnej dobe plnej digitálnych
-          vzťahov sa môže stať, že nájdete niekoho, kto vám úplne zmení život na internete. A my sme našli jeden
-          druhého.
+          Takmer tri roky na to tu teraz čítate náš príbeh, ktorý je dôkazom toho, že aj v dnešnej dobe sa môže stať, že
+          na internete nájdete niekoho, kto vám úplne zmení život. A my sme našli jeden druhého.
         </p>
         <blockquote className="story__quote reveal">
           „A zrazu sme vedeli, že vesmír bol stvorený, aby sa naše duše stretli."

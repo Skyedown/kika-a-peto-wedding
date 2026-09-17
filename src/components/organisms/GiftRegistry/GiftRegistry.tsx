@@ -21,9 +21,9 @@ export const GiftRegistry = memo(() => (
       </svg>
       <h2 className="h2 h2--center reveal">Váš darček</h2>
       <p className="gift__msg reveal">
-        Naša domácnosť je už zariadená, a preto by sme vás poprosili, ak sa rozhodnete nás obdarovať, aby ste
+        Naša domácnosť je už zariadená a preto by sme Vás poprosili, ak sa rozhodnete nás obdarovať, aby ste
         uprednostnili finančný dar. Každý príspevok použijeme na stavbu nášho vysnívaného domova, v ktorom Vás radi po
-        jeho dokončení samozrejme privítame a pohostíme. Ďakujeme vám z celého srdca.
+        jeho dokončení samozrejme privítame a pohostíme. Ďakujeme Vám z celého srdca.
         <Icon name="heart" className="gift__heart" decorative={false} title="srdce" />
       </p>
     </div>

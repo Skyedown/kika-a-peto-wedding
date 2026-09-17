@@ -28,7 +28,7 @@ export const Schedule = ({ rsvpUrl }: ScheduleProps) => (
         ))}
       </ol>
       <div className="schedule__cta reveal">
-        <p className="schedule__cta-text">Tešíme sa na každú chvíľu s vami</p>
+        <p className="schedule__cta-text">Tešíme sa na každú chvíľu s Vami</p>
         <Button href={rsvpUrl} variant="light" external>
           Potvrdiť účasť
         </Button>

@@ -29,8 +29,8 @@ export const Accommodation = () => (
         ))}
       </div>
       <p className="stay__note reveal">
-        Parkovanie je k dispozícii priamo v areáli ubytovania, alebo pri ceste popri svadobnom stane. Pre lokálnych
-        hostí zabezpečíme odvoz do blízkeho okolia. Pre ubytovaných v Centre poznávania je ubytovanie dostupné na pešo
+        Parkovanie je k dispozícii priamo v areáli ubytovania alebo pri ceste popri svadobnom stane. Pre lokálnych hostí
+        zabezpečíme odvoz do blízkeho okolia. Pre ubytovaných hostí v Centre poznávania je ubytovanie dostupné na pešo
         (cca 300m).
       </p>
     </div>

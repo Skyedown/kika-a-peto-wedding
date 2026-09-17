@@ -31,5 +31,9 @@
   &__meta {
     color: @color-text-muted;
     font-size: 0.9rem;
+    // Zlom riadku pride z dat (template literal v content.ts). `pre-line`
+    // zachova newline, ale odsadenie v zdrojaku zbali - netreba ho lepit
+    // na zaciatok riadku.
+    white-space: pre-line;
   }
 }

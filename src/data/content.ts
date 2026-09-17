@@ -100,16 +100,18 @@ export const schedule: ScheduleEntry[] = [
   {
     time: '10:00',
     date: '5. 6. 2027',
-    title: 'Spoločné raňajky v Centre poznávania (volitelné)',
+    title: 'Spoločné raňajky v Centre poznávania (voliteľné)',
     detail:
-      'Pre tých, ktorí zostávajú cez noc, ráno sa stretneme na spoločných raňajkách v Centre poznávania v Oščadnici. Bude to skvelá príležitosť sa ešte raz stretnúť, poďakovať si a rozlúčiť sa.',
+      'Pre tých, ktorí zostávajú cez noc, ráno sa stretneme na spoločných raňajkách v Centre poznávania v Oščadnici. Bude to skvelá príležitosť sa ešte raz stretnúť, poďakovať a rozlúčiť sa.',
   },
 ];
 
 export const hotels: Hotel[] = [
   {
     name: 'Centrum poznávania - Oščadnica',
-    meta: '300m · priamo pri mieste konania · 15 €/noc',
+    // Zlom je zamerny - renderuje sa cez white-space: pre-line.
+    meta: `300m · priamo pri mieste
+      konania · 15 €/noc`,
     mapUrl: 'https://maps.app.goo.gl/xxiQkYJMk2AaEC5g6',
   },
 ];
