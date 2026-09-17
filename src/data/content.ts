@@ -147,6 +147,7 @@ export const faqs: FaqEntry[] = [
 export const COUPLE_NAMES = ['Kika', 'Peťo'] as const;
 export const WEDDING_DATE_SHORT = '04 · 06 · 2027';
 export const WEDDING_DATE_LONG = '4. júna 2027';
+export const WEDDING_DATE_NUMERIC = '4.6.2027';
 export const WEDDING_DATE_ISO = '2027-06-04T15:30:00+02:00';
 export const VENUE = 'Svadobný stan - Oščadnica';
 export const VENUE_MAP_URL = 'https://maps.app.goo.gl/Hw8vkH1oWmBVKbNp9';

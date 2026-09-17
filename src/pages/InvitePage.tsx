@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { findGuest, resolveFormUrl } from '@data/guests';
+import { isSingularInvite } from '@data/inviteMeta';
 import { WeddingLayout } from '@pages/WeddingLayout';
 import { NotFoundPage } from '@pages/NotFoundPage';
 
@@ -14,7 +15,7 @@ export const InvitePage = () => {
   }
 
   const formUrl = resolveFormUrl(guest);
-  const singular = !guest.slug.includes('-a-');
+  const singular = isSingularInvite(guest);
 
   return <WeddingLayout invite={{ names: guest.names, formUrl, singular, gender: guest.gender }} rsvpUrl={formUrl} />;
 };
