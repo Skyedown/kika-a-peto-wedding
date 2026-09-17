@@ -4,12 +4,24 @@ import { fileURLToPath, URL } from 'node:url';
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { guests } from './src/data/guests';
-import { inviteOgDescription } from './src/data/inviteMeta';
+import { INVITE_OG_DESCRIPTION, inviteOgTitle } from './src/data/inviteMeta';
 
 const escapeAttribute = (value: string): string =>
   value.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
+const OG_TITLE = /(<meta property="og:title" content=")[^"]*(")/;
 const OG_DESCRIPTION = /(<meta property="og:description" content=")[^"]*(")/;
+const OG_IMAGE = /(<meta property="og:image" content=")([^"]*)(")/;
+
+// og:image musi byt absolutna URL - relativnu WhatsApp nevyhodnoti a spadne na
+// apple-touch-icon. Na Verceli domenu poznam z build prostredia, inak sa da dat
+// cez VITE_SITE_URL.
+function resolveSiteUrl(): string | undefined {
+  const explicit = process.env.VITE_SITE_URL ?? process.env.SITE_URL;
+  if (explicit) return explicit.replace(/\/+$/, '');
+  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL;
+  return vercel ? `https://${vercel}` : undefined;
+}
 
 // Nahlad odkazu vykresluju crawleri, ktori nespustia JavaScript - meniť og:*
 // z Reactu je teda zbytocne. Kazdemu hostovi preto pri builde vyrobime vlastny
@@ -21,19 +33,40 @@ function prerenderInviteMeta(): Plugin {
     apply: 'build',
     async closeBundle() {
       const outDir = fileURLToPath(new URL('./dist', import.meta.url));
-      const shell = await readFile(join(outDir, 'index.html'), 'utf8');
+      const indexPath = join(outDir, 'index.html');
+      let shell = await readFile(indexPath, 'utf8');
 
-      if (!OG_DESCRIPTION.test(shell)) {
-        throw new Error('prerender-invite-meta: v index.html chyba <meta property="og:description">.');
+      for (const [name, pattern] of [
+        ['og:title', OG_TITLE],
+        ['og:description', OG_DESCRIPTION],
+        ['og:image', OG_IMAGE],
+      ] as const) {
+        if (!pattern.test(shell)) {
+          throw new Error(`prerender-invite-meta: v index.html chyba <meta property="${name}">.`);
+        }
+      }
+
+      const siteUrl = resolveSiteUrl();
+      if (siteUrl) {
+        shell = shell.replace(OG_IMAGE, (_m, open: string, src: string, close: string) =>
+          src.startsWith('http') ? `${open}${src}${close}` : `${open}${siteUrl}${src}${close}`,
+        );
+        await writeFile(indexPath, shell);
+      } else {
+        this.warn(
+          'og:image ostava relativna - WhatsApp ju zahodi a ukaze favicon. Nastav VITE_SITE_URL (na Verceli sa domena doplni sama).',
+        );
       }
 
       for (const guest of guests) {
-        const html = shell.replace(OG_DESCRIPTION, `$1${escapeAttribute(inviteOgDescription(guest))}$2`);
+        const html = shell
+          .replace(OG_TITLE, `$1${escapeAttribute(inviteOgTitle(guest))}$2`)
+          .replace(OG_DESCRIPTION, `$1${escapeAttribute(INVITE_OG_DESCRIPTION)}$2`);
         await mkdir(join(outDir, guest.slug), { recursive: true });
         await writeFile(join(outDir, guest.slug, 'index.html'), html);
       }
 
-      this.info(`vygenerovanych ${guests.length} pozvanok s vlastnym og:description`);
+      this.info(`vygenerovanych ${guests.length} pozvanok${siteUrl ? ` (og:image -> ${siteUrl})` : ''}`);
     },
   };
 }
