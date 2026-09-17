@@ -21,9 +21,22 @@
 
   &__grid {
     display: grid;
+    // minmax(0, 1fr), nie 1fr: implicitny track ma min-width auto a roztiahol by
+    // sa na min-content sirku nezalomitelneho CTA, cim by karta pretiekla panel.
+    grid-template-columns: minmax(0, 1fr);
     gap: 1.4rem;
     max-width: 480px;
     margin-inline: auto;
+  }
+
+  // CTA je mimo karty - v nej bolo uzke miesto a nezalomitelny popisok ju
+  // roztlacal cez panel. Tu ma k dispozicii celu sirku panelu.
+  &__map {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.6rem;
   }
 
   &__note {

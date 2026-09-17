@@ -1,6 +1,7 @@
 import { hotels } from '@data/content';
 import { stayInstax } from '@data/photos';
 import { InstaxPhoto } from '@atoms/InstaxPhoto/InstaxPhoto';
+import { MapButton } from '@atoms/MapButton/MapButton';
 import { SectionHeading } from '@atoms/SectionHeading/SectionHeading';
 import { HotelCard } from '@molecules/HotelCard/HotelCard';
 import './Accommodation.less';
@@ -21,6 +22,11 @@ export const Accommodation = () => (
       <div className="stay__grid">
         {hotels.map((hotel) => (
           <HotelCard key={hotel.name} hotel={hotel} />
+        ))}
+      </div>
+      <div className="stay__map reveal">
+        {hotels.map((hotel) => (
+          <MapButton key={hotel.name} href={hotel.mapUrl} />
         ))}
       </div>
       <p className="stay__note reveal">
