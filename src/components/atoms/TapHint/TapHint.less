@@ -12,6 +12,23 @@
   transform: translateX(-50%);
   pointer-events: none;
 
+  // Vyzera ako tlacidlo, ale klikatelna je cela plocha - preto len ramcek bez
+  // vyplne, nech neprekryva obalku. Dycha cely ramcek, nie samotny text.
+  &__button {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.7rem 1.5rem;
+    border: 0.0625rem solid fade(@color-olive-dark, 55%);
+    border-radius: @radius-lg;
+    background: transparent;
+    // Pulzujeme priamo ramcek a vypln, nie opacity celeho prvku - tá by sa s
+    // krytim ramceka nasobila a v spodnej faze by z neho ostalo 0.22.
+    animation: tap-hint-pulse 2.8s ease-in-out infinite;
+    transition:
+      border-color @transition-fast,
+      background @transition-fast;
+  }
+
   &__label {
     font-family: @font-body;
     font-size: 0.7rem;
@@ -19,8 +36,6 @@
     text-transform: uppercase;
     white-space: nowrap;
     color: @color-text;
-    opacity: 0.72;
-    animation: tap-hint-breathe 2.8s ease-in-out infinite;
 
     &--pointer {
       display: none;
@@ -53,20 +68,31 @@
       opacity: 1;
     }
 
-    .tap-hint__label {
+    .tap-hint__button {
       animation: none;
       opacity: 0.4;
     }
   }
+
+  // Trigger je az za hintom, takze naň nedosiahneme susedskym selektorom.
+  // Hint ma pointer-events: none, takze vlastny :hover nikdy nedostane.
+  @media (hover: hover) and (pointer: fine) {
+    .intro:has(.intro__trigger:hover:not(:disabled)) & .tap-hint__button {
+      border-color: @color-olive-dark;
+      background: fade(@color-white, 22%);
+    }
+  }
 }
 
-@keyframes tap-hint-breathe {
+@keyframes tap-hint-pulse {
   0%,
   100% {
-    opacity: 0.45;
+    border-color: fade(@color-olive-dark, 42%);
+    background: fade(@color-white, 0%);
   }
   50% {
-    opacity: 0.85;
+    border-color: fade(@color-olive-dark, 90%);
+    background: fade(@color-white, 32%);
   }
 }
 
