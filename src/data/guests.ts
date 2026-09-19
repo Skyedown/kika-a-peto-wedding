@@ -53,6 +53,7 @@ export const guests: Guest[] = [
   { slug: 'mato', names: 'Matej', gender: 'm' },
   { slug: 'kubo', names: 'Kubo', gender: 'm' },
   { slug: 'milan', names: 'Milan', gender: 'm' },
+  { slug: 'adrian', names: 'Adrian', gender: 'm' },
 
   // Kamarati Kika
   { slug: 'vejka-a-matus', names: 'Vejka & Matúš' },
