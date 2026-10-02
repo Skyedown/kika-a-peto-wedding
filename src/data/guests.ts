@@ -21,7 +21,7 @@ export const guests: Guest[] = [
 
   // Rodina Peto
   { slug: 'monca-a-dodo', names: 'Monča & Dodo' },
-  { slug: 'vlada-a-vladko', names: 'Dadina & Vladko' },
+  { slug: 'vlada-a-vladko', names: 'Dadina & Vladko s rodinou' },
   { slug: 'lenka-a-martin', names: 'Lenka & Martin' },
   { slug: 'marcelka-a-vladko', names: 'Marcelka & Vladko' },
   { slug: 'terka', names: 'Terka', gender: 'f' },
